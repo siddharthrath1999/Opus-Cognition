@@ -30,7 +30,26 @@ When you look at the files above, here is exactly what they do:
 
 Standard AI models answer prompts immediately, often leading to deep logical flaws, race conditions in code, or hallucinations.
 
-**The Opus 4.6 Cognitive Engine** intercepts this by forcing the model into a strict **10-Stage Pipeline**. Before generating an answer, the AI must open a `<thinking>` tag and:
+**The Opus 4.6 Cognitive Engine** intercepts this by forcing the model into a strict **10-Stage Pipeline**. 
+
+```mermaid
+graph TD
+    subgraph "❌ Standard AI Pipeline"
+        A[User Prompt] -->|Direct Answer| B[Immediate Generation]
+        B --> C[Flawed / Hallucinated Output]
+    end
+
+    subgraph "✅ Opus 4.6 Cognitive Pipeline"
+        D[User Prompt] --> E{Stage 1: Problem Framing}
+        E -->|Create Paths| F[Stage 2: Exploratory Thoughts]
+        F -->|Test Logic| G{Stage 6: Adversarial Critique}
+        G -.->|Flaw Detected! Re-loop| F
+        G -->|Verified| H[Stage 7: Calibration]
+        H --> I[Structurally Grounded Output]
+    end
+```
+
+Before generating an answer, the AI must open a `<thinking>` tag and:
 1. **Explore** multiple opposing reasoning paths. 
 2. **Adversarially Critique** its own logic to find hidden flaws.
 3. **Calibrate** its confidence and refuse to guess if ambiguous.
