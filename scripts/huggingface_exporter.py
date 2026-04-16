@@ -24,11 +24,12 @@ def export_huggingface_dataset():
         try:
             fixture_target = os.path.join(base_dir, "tests", "fixtures", test['fixture'])
             if os.path.exists(fixture_target):
-                with open(fixture_target, "r") as f:
+                with open(fixture_target, "r", encoding="utf-8", errors="replace") as f:
                     content = f.read()
                     
                     dataset.append({
                         "system_instruction_source": "Opus-Cognition Framework",
+                        "license": "MIT",
                         "instruction": f"Execute this prompt mimicking the 10-stage Opus pipeline: {test['name']}",
                         "input_context": content,
                         "success_criteria_regex": test['metrics'][0]['pattern'],

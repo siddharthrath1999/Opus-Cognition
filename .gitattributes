@@ -1,0 +1,9 @@
+# Auto-detect text files and normalize line endings to LF (Prevent Windows CRLF tearing)
+* text=auto eol=lf
+
+# Explicitly ensure payloads do not get normalized and break byte sequences
+tests/fixtures/*.js binary
+tests/fixtures/*.py binary
+tests/fixtures/*.diff binary
+tests/fixtures/*.txt binary
+tests/fixtures/*.jsx binary

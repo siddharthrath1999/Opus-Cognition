@@ -1,0 +1,18 @@
+# Universal Docker Context Shield
+.git
+.github
+.gitignore
+.gitattributes
+.venv
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+build/
+dist/
+node_modules/
+.DS_Store

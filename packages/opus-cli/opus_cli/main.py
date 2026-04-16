@@ -1,3 +1,6 @@
+# Copyright (c) 2026 Opus-Cognition Contributors
+# Licensed under the MIT License
+
 import argparse
 import sys
 import os
