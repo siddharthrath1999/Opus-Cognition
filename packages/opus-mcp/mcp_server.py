@@ -1,5 +1,5 @@
-from fastmcp import FastMCP
 import os
+from fastmcp import FastMCP
 
 # Initialize the Model Context Protocol Server natively
 mcp = FastMCP("Opus-Cognition-Server")
@@ -10,8 +10,10 @@ def apply_cognitive_framework(problem_statement: str) -> str:
     Applies the full Opus 4.6 10-stage framework to a complex problem.
     Use this tool exclusively when you (the Agent) need to solve deep analysis, architecture bugs, or red-team constraints.
     """
-    # Assuming relative execution from the MCP runner path
-    path = "../../system_instructions/opus46_cognitive_engine.md"
+    # UNIVERSAL ALIGNMENT: Dynamically map to the root of the repository to prevent execution environment crashes.
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    path = os.path.join(base_dir, "system_instructions", "opus46_cognitive_engine.md")
+    
     try:
         with open(path, "r", encoding='utf-8') as f:
             engine = f.read()

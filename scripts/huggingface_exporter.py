@@ -7,8 +7,10 @@ def export_huggingface_dataset():
     Compiles local test suites into a HuggingFace fine-tuning/eval dataset format (.jsonl).
     Running this exposes the rigorous Opus-Cognition testing logic to global AI researchers.
     """
-    output_path = "huggingface_benchmark.jsonl"
-    config_path = "tests/configs/eval_params.yaml"
+    # UNIVERSAL ALIGNMENT: Ensure paths run perfectly regardless of caller directory.
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    output_path = os.path.join(base_dir, "huggingface_benchmark.jsonl")
+    config_path = os.path.join(base_dir, "tests", "configs", "eval_params.yaml")
     
     if not os.path.exists(config_path):
         print("❌ Cannot find evaluation configs.")
@@ -20,7 +22,7 @@ def export_huggingface_dataset():
     dataset = []
     for test in config['tests']:
         try:
-            fixture_target = f"tests/fixtures/{test['fixture']}"
+            fixture_target = os.path.join(base_dir, "tests", "fixtures", test['fixture'])
             if os.path.exists(fixture_target):
                 with open(fixture_target, "r") as f:
                     content = f.read()
