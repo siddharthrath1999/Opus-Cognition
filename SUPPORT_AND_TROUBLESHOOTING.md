@@ -50,5 +50,5 @@ Skills (found in `/skills/`) are powerful extensions, but they can misfire if no
 
 ## 🔗 Deep Links
 If you need to understand core parameters or file bugs:
-- [Opus 4.6 Architecture Rules](../system_instructions/opus46_cognitive_engine.md)
-- [Review the Test Configurations](../tests/configs/eval_params.yaml)
+- [Opus 4.6 Architecture Rules Manual](system_instructions/ARCHITECTURE_RULES.md) (Deep dive into the 10-stage structural logic)
+- [Review the Test Configurations](tests/configs/eval_params.yaml)
