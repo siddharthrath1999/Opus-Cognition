@@ -5,6 +5,11 @@
   [![Framework: Opus 4.6](https://img.shields.io/badge/Framework-Opus_4.6-blue.svg)](#)
   [![Agents Supported](https://img.shields.io/badge/Agents-Cursor_|_VSCode_|_Claude-purple.svg)](#)
   [![Tests](https://img.shields.io/badge/Tests-10%20Scenarios-green.svg)](#)
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+  
+  <br>
+  
+  **[𝕏 Share on X/Twitter](https://twitter.com/intent/tweet?text=Just%20found%20an%20open-source%20cognitive%20framework%20for%20AI%20Agents.%20Forces%20adversarial%20self-critique%20before%20answering.&url=https://github.com/siddharthrath1999/Opus-Cognition)** • **[💬 Discuss on HackerNews](https://news.ycombinator.com/submit)**
 </div>
 
 ---
@@ -14,7 +19,10 @@ If you have ever asked an AI to write a complex script or solve a deep architect
 **Opus-Cognition** is an open-source framework designed to stop this entirely. It is not an application you install; it is a master instruction set (a "system prompt") that fundamentally rewires how an AI model approaches a problem. 
 
 > [!TIP]
-> **Quick Start:**  
+> **10-Second Live Demo:**  
+> Run `python examples/run_opus_live.py` to watch your terminal stream the live 10-stage thinking loop as it catches a race condition in real-time.
+>
+> **Quick Start UI:**  
 > Simply copy the contents of [`system_instructions/opus46_cognitive_engine.md`](system_instructions/opus46_cognitive_engine.md) into your ChatGPT Custom Instructions, Claude Projects, or Cursor `.cursorrules`. You will immediately notice your AI taking longer to answer, but producing radically verified, flawless intelligence.
 
 ---
@@ -41,6 +49,12 @@ graph TD
         H --> I[Structurally Grounded Output]
     end
 ```
+
+## 🔍 The Difference in Action
+
+| ❌ Standard AI Prompt | ✅ Opus-Cognition Pipeline |
+|-------------------------|--------------------------|
+| <br> **User:** Write an async database script.<br><br>**AI:** `db.execute("UPDATE users...")`<br><br>*⚠️ Fails instantly on production due to race conditions. Costly to debug.* | <br>**User:** Write an async database script.<br><br>**AI:** `<thinking>`<br>`Stage 2: Standard UPDATE.`<br>`Stage 6: Wait, adversarial check.`<br>`<adversarial_review> FATAL: This will cause lost-update deadlocks. Forcing rewrite with SELECT FOR UPDATE. </adversarial_review>`<br>`</thinking>`<br><br>*🟢 Outputs bulletproof row-locked schema.* |
 
 ---
 
