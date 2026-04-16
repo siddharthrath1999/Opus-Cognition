@@ -1,0 +1,9 @@
+# Opus-Cognition Root Evaluation Dependencies
+# Required to execute `tests/run_suite.py` locally and `scripts/huggingface_exporter.py`
+
+anthropic>=0.25.0
+PyYAML>=6.0.1
+pandas>=2.0.0
+pypdf>=4.0.0
+python-docx>=1.1.0
+openpyxl>=3.1.2
