@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>🧠 Opus-Cognition</h1>
+  <h1><img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/claude-ai-icon.png" width="40" alt="Claude AI"> Opus-Cognition</h1>
   <p><b>A fundamental shift in how AI thinks. A production-ready cognitive reasoning framework and skill suite.</b></p>
   
   [![Framework: Opus 4.6](https://img.shields.io/badge/Framework-Opus_4.6-blue.svg)](#)
