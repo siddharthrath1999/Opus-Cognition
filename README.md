@@ -3,9 +3,9 @@
   <sub><i>Logo sourced from <a href="https://uxwing.com/claude-ai-icon/">Uxwing</a></i></sub>
   <p><b>A fundamental shift in how AI thinks. A production-ready cognitive reasoning framework and skill suite.</b></p>
   
-  [![Framework: Opus 4.6](https://img.shields.io/badge/Framework-Opus_4.6-blue.svg)](#)
-  [![Agents Supported](https://img.shields.io/badge/Agents-Cursor_|_VSCode_|_Claude-purple.svg)](#)
-  [![Tests](https://img.shields.io/badge/Tests-10%20Scenarios-green.svg)](#)
+  [![Framework: Opus 4.6](https://img.shields.io/badge/Framework-Opus_4.6-blue.svg)](system_instructions/opus46_cognitive_engine.md)
+  [![Agents Supported](https://img.shields.io/badge/Agents-Cursor_|_VSCode_|_Claude-purple.svg)](USAGE_AND_INTEGRATION.md)
+  [![Tests](https://img.shields.io/badge/Tests-10%20Scenarios-green.svg)](TESTING_AND_RESULTS.md)
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
   
   <br>
