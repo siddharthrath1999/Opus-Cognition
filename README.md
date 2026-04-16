@@ -96,6 +96,17 @@ While the engine gives the AI *intelligence*, the skills give it *specialized kn
 
 ---
 
+## 🚀 The Scalability Ecosystem
+Opus-Cognition is no longer just a rigid Markdown file; it is a sprawling, production-ready DevOps ecosystem natively supporting agentic scale:
+
+- 💻 **Global CLI (`packages/opus-cli`)**: Pip-installable terminal tracker. Run `opus "Find the bug"` from your bash shell natively using Beta Prompt Cached infrastructure to save 90% in inference costs.
+- 🔌 **FastMCP Protocol Server (`packages/opus-mcp`)**: A natively bound Model Context Protocol server exposing the 10-stage framing directly to Claude Desktop seamlessly.
+- 🐳 **Docker Sandbox (`Dockerfile`)**: A sealed evaluation container for hitting logic bombs securely without local machine risks.
+- 🤗 **HuggingFace Dataset Compiler (`scripts/`)**: Compile your test config suites into a `.jsonl` fine-tuning benchmark dynamically.
+- 🕹️ **Terminal UI Playground (`playground/index.html`)**: Visualize the core problem-solving engine natively through a simulation engine via any browser.
+
+---
+
 ## 📚 Where to Go Next
 
 - 📖 **[Installation & Integration Guide](USAGE_AND_INTEGRATION.md)**: Ready to use it? This guide explicitly shows you how to drop the engine into your daily workflows.

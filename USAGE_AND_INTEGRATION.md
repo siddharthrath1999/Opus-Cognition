@@ -92,7 +92,27 @@ If you are a developer building a backend LLM loop, pass the Opus framework stat
 > [!WARNING]
 > Do **NOT** place the framework in the `user` prompt. It must be placed in the `system` role parameter to establish highest adherence priority.
 
-### Python (Anthropic SDK Example)
+### Advanced: The Global CLI (Beta Prompt Caching)
+Because Opus is massive, sending it into an API on every call burns input tokens. If you want to use Opus-Cognition on-the-fly securely, utilize the included pip package. This architecture natively injects `<ephemeral>` caching markers, saving you **~90%** on Anthropic usage costs automatically!
+```bash
+# From the repository root
+cd packages/opus-cli
+pip install -e .
+export ANTHROPIC_API_KEY="your-key"
+
+# Execute natively from anywhere!
+opus "Analyze this architecture for lost-updates"
+```
+
+### Advanced: The FastMCP Server (Claude Desktop)
+If you prefer Claude Desktop, you don't even need to paste the `.md` file. Boot the natively installed Model Context Protocol server:
+```bash
+cd packages/opus-mcp
+python mcp_server.py
+```
+*This exposes the Opus Cognitive Tool universally to your Claude desktop instances.*
+
+### Generic Python (Standard API Call)
 
 ```python
 import os
