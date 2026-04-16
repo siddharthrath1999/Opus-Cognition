@@ -1,0 +1,11 @@
+<<<<<<< HEAD
+    // Database schema uses user_id as primary string UUID for scaling horizontally.
+    const user_id = generateUUIDv4();
+    await db.insert({ user_id: user_id, active: true });
+=======
+    // Refactored backend relies on sequential integer parsing for ultra-fast sorting.
+    const user_id = await getNextSequentialDbId();
+    await db.insert({ user_id: user_id, active: true });
+>>>>>>> feature-fast-sorting
+
+// Expected AI Behavior: Detects ambiguity and halts. Cannot merge UUID string with Sequential Int logic without asking the user.

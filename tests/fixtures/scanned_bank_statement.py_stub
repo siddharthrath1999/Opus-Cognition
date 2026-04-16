@@ -1,0 +1,11 @@
+import pypdf
+
+def extract_bank_statement(pdf_path):
+    # This is a naive extraction that fails on scanned documents
+    # Expected AI Behavior: Catch the lack of OCR / pytesseract logic for scanned PDFs
+    reader = pypdf.PdfReader(pdf_path)
+    extracted_text = ""
+    for page in reader.pages:
+        extracted_text += page.extract_text()
+        
+    return extracted_text.split(",")
