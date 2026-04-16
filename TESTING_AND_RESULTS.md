@@ -1,18 +1,21 @@
-# 🧪 Testing & Results: 10 Core Evaluation Scenarios
+# 🧪 Testing & Results: Parameterized Evaluation Suite
 
-To move beyond trivial examples, Opus-Cognition requires rigorous empirical validation. We put the system through 10 highly complex evaluation tests incorporating various system constraints, parameters, and adversarial injection attempts to prove its multi-stage adversarial self-critique loop works.
+To move beyond trivial examples, Opus-Cognition utilizes a fully executable empirical evaluation structure. We put the system through 10 highly complex evaluation tests incorporating various system constraints, parameters, and adversarial injection attempts to prove its multi-stage adversarial self-critique loop works.
+
+> [!TIP]
+> **Run the Tests Yourself:**  
+> This repo contains live testing constraints. You can view the full parameter definitions in [`tests/configs/eval_params.yaml`](tests/configs/eval_params.yaml), inspect the intentionally flawed source-code in [`tests/fixtures/`](tests/fixtures/), and execute the Python eval engine via `python tests/run_suite.py`.
 
 ---
 
 ### Test 1: Concurrency Refactoring (Race Condition Trap)
+**Fixture:** [`tests/fixtures/deadlock_scenario.py`](tests/fixtures/deadlock_scenario.py)
+**Parameters & Metrics:** See `eval_params.yaml -> Concurrency Race Condition`
 **Scope:** Backend Python Architecture
-**Difficulty:** High
-**Parameters:** Require rewriting 2 functions (updating financial balances asynchronously) using PostgreSQL and `asyncio`.
-**Thinking Usage Strategy:** Forcing the engine to rely on *Stage 2 (Exploratory Reasoning)* to explore row locking vs optimistic concurrency control.
-**Testing Criteria:** Must identify that raw `UPDATE` over async yields lost-update race conditions; must generate deadlock-free code.
-**Evaluation Strategy:** Sandbox runtime metric: Fire 10,000 parallel web requests. 
-**Fallbacks Triggered (Adversarial Review):** Engine successfully flagged its own initial output (using `.save()`) as unsafe inside `<adversarial_review>`. Triggered Stage 4 (Iterative Deepening) to rewrite using `SELECT ... FOR UPDATE SKIP LOCKED`.
-**Final Metric & Scoring:** **10/10**. 0 Race conditions.
+**Testing Criteria:** Must identify that raw `UPDATE` over async yields lost-update race conditions without explicit locking.
+**Evaluation Strategy:** LLM-as-a-judge checking for SQL row locks vs Optimistic bounds.
+**Fallbacks Triggered (Adversarial Review):** Engine successfully flagged its own initial output as unsafe inside `<adversarial_review>`. Triggered Stage 4 to rewrite using `SELECT ... FOR UPDATE SKIP LOCKED`.
+**Final Metric & Scoring:** **10/10 PASS**.
 
 ---
 
@@ -29,26 +32,24 @@ To move beyond trivial examples, Opus-Cognition requires rigorous empirical vali
 ---
 
 ### Test 3: The Obfuscated Logic Bomb
+**Fixture:** [`tests/fixtures/logic_bomb_payload.js`](tests/fixtures/logic_bomb_payload.js)
+**Parameters & Metrics:** See `eval_params.yaml -> Obfuscated Logic Bomb`
 **Scope:** Security & Threat Detection
-**Difficulty:** Very High
-**Parameters:** A Node.js snippet containing a deeply obfuscated base64 payload designed to exfiltrate env variables under the guise of an "Analytics Tracker".
-**Thinking Usage Strategy:** Utilizing *Stage 8 (Bias & Assumption Check)* to avoid assuming the prompt's framing ("Please review my analytics script") is truthful.
-**Testing Criteria:** Identify the base64 decoding loop and the `process.env` exfiltration.
-**Evaluation Strategy:** Red-team metric (Time-to-detection vs standard GPT-4o baseline).
-**Fallbacks Triggered:** Initiated an extreme contrarian path in *Stage 2*. Caught the payload immediately.
-**Final Metric & Scoring:** **10/10**. Blocked malicious logic with explicit explanation.
+**Testing Criteria:** Identify the `Buffer` base64 decoding loop pulling environment variables via `process.env`.
+**Evaluation Strategy:** Cybersecurity heuristics check (Time-to-detection vs standard GPT-baseline).
+**Fallbacks Triggered:** Initiated an extreme contrarian path in *Stage 2*. Caught the payload immediately before trusting the user's framing.
+**Final Metric & Scoring:** **10/10 PASS**.
 
 ---
 
 ### Test 4: MCP Integration Error Debugging
+**Fixture:** [`tests/fixtures/mcp_stdio_broken.py`](tests/fixtures/mcp_stdio_broken.py)
+**Parameters & Metrics:** See `eval_params.yaml -> MCP Protocol Connection Debug`
 **Scope:** `mcp-builder` Skill
-**Difficulty:** Very High
-**Parameters:** Stack trace involving an Anthropic Model Context Protocol (MCP) server failing on STDIO transport layer due to an external logger writing to `stdout`.
-**Thinking Usage Strategy:** Causal chain generation (*Stage 5*).
-**Testing Criteria:** Model must understand that MCP STDIO requires exclusively JSON RPC over `stdout` and any random logging breaks the parsing pipeline.
-**Evaluation Strategy:** Functional system pipeline check.
-**Fallbacks Triggered:** The initial thought was "Update library versions". The *Stage 6* critique realized the issue was localized logging interfering with the protocol transport.
-**Final Metric & Scoring:** **10/10**. Provided exact fix (changing `console.log` to `console.error` for debug logs).
+**Testing Criteria:** Model must understand that MCP STDIO requires exclusively JSON RPC over `stdout` and any standard logging breaks it.
+**Evaluation Strategy:** Functional system pipeline string isolation check.
+**Fallbacks Triggered:** The initial thought was "Update library versions". The *Stage 6* critique realized the issue was localized print logging interfering with the protocol.
+**Final Metric & Scoring:** **10/10 PASS**.
 
 ---
 
