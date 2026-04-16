@@ -10,18 +10,28 @@ import asyncio
 # client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
 
 class OpusEvaluator:
-    def __init__(self, config_path="configs/eval_params.yaml"):
+    def __init__(self, config_path=None):
+        # UNIVERSAL ALIGNMENT: Prevents test failing based on user's current directory
+        self.base_dir = os.path.dirname(os.path.abspath(__file__))
+        self.repo_root = os.path.dirname(self.base_dir)
+        
+        if config_path is None:
+            config_path = os.path.join(self.base_dir, "configs", "eval_params.yaml")
+            
         with open(config_path, "r") as file:
             self.config = yaml.safe_load(file)
             
-        with open("../system_instructions/opus46_cognitive_engine.md", "r") as f:
+        engine_path = os.path.join(self.repo_root, "system_instructions", "opus46_cognitive_engine.md")
+        with open(engine_path, "r", encoding="utf-8") as f:
             self.system_prompt = f.read()
 
-        self.reports_dir = "reports"
+        self.reports_dir = os.path.join(self.base_dir, "reports")
         os.makedirs(self.reports_dir, exist_ok=True)
         
+        self.fixtures_dir = os.path.join(self.base_dir, "fixtures")
+        
     def load_fixture(self, filename):
-        with open(os.path.join("fixtures", filename), "r") as f:
+        with open(os.path.join(self.fixtures_dir, filename), "r", encoding="utf-8") as f:
             return f.read()
             
     async def run_single_eval(self, test_case):
