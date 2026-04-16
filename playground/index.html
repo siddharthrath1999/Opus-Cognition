@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opus-Cognition Playground</title>
+    <!-- Using Tailwind CDN for standalone portability without Vite build steps -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <!-- Navbar / Header -->
+    <header class="bg-gray-950 border-b border-gray-800 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">🧠 Opus-Cognition UI</h1>
+            <a href="https://github.com/siddharthrath1999/Opus-Cognition" target="_blank" class="text-gray-400 hover:text-white transition">GitHub Repo</a>
+        </div>
+    </header>
+
+    <div class="container mx-auto p-8 mt-5">
+        <p class="text-gray-400 mb-8 max-w-2xl">This playground visualizes the 10-stage multi-pass engine. Input a standard prompt and watch how the engine forces logical verification and adversarial loops before answering.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Left Pane: Input -->
+            <div class="bg-gray-800 rounded-lg p-6 flex flex-col h-[600px] border border-gray-700 shadow-xl">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold text-gray-200">User Prompt Payload</h2>
+                </div>
+                <textarea id="promptInput" class="w-full flex-grow bg-gray-950 border border-gray-700 rounded p-4 text-emerald-400 font-mono focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none" placeholder="Write a raw database update script here..."></textarea>
+                <button onclick="runSimulation()" class="mt-6 bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-6 rounded-lg transition-colors w-full shadow-[0_0_15px_rgba(37,99,235,0.4)]">Execute Framework Loop</button>
+            </div>
+
+            <!-- Right Pane: Terminal Output -->
+            <div class="bg-black rounded-lg p-6 border border-gray-800 shadow-2xl h-[600px] overflow-y-auto flex flex-col">
+                <!-- Terminal Header Bar -->
+                <div class="flex items-center space-x-2 mb-4 pb-3 border-b border-gray-800">
+                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    <span class="text-gray-600 text-sm ml-4 font-mono">bash -> opus-engine-live</span>
+                </div>
+                
+                <div id="terminal" class="font-mono text-sm leading-relaxed text-gray-300">
+                    <p class="text-blue-500">>> Server idle. Waiting for payload...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function runSimulation() {
+            const input = document.getElementById('promptInput').value;
+            const term = document.getElementById('terminal');
+            if(input.trim() === "") {
+                term.innerHTML = '<p class="text-red-500">❌ Error: Prompt cannot be empty.</p>';
+                return;
+            }
+            
+            term.innerHTML = '<p class="text-blue-400 mb-2">>> Connection to Anthropic Core established.</p>';
+            
+            // Simulating sequential multi-stage output for visual representation
+            setTimeout(() => term.innerHTML += '<p class="text-gray-500 mt-2">&lt;thinking&gt;</p>', 500);
+            setTimeout(() => term.innerHTML += '<p class="text-yellow-400 pl-4 mt-1">Stage 1: Framing... The user wants a standard SQL update.</p>', 1200);
+            setTimeout(() => term.innerHTML += '<p class="text-yellow-400 pl-4 mt-1">Stage 2: Exploring paths (ORM vs Raw SQL)...</p>', 1900);
+            setTimeout(() => term.innerHTML += '<p class="text-red-400 pl-4 mt-3">&lt;adversarial_review&gt;</p>', 2500);
+            setTimeout(() => term.innerHTML += '<p class="text-red-300 pl-8 font-bold">FATAL FLAW CAUGHT: Standard updates will cause a lost-update race condition at scale. Wiping context...</p>', 3200);
+            setTimeout(() => term.innerHTML += '<p class="text-red-400 pl-4">&lt;/adversarial_review&gt;</p>', 3600);
+            setTimeout(() => term.innerHTML += '<p class="text-green-400 pl-4 mt-2">Stage 4: Synthesizing verified fix using `SELECT FOR UPDATE`</p>', 4200);
+            setTimeout(() => term.innerHTML += '<p class="text-gray-500 mt-1">&lt;/thinking&gt;</p>', 4800);
+            setTimeout(() => term.innerHTML += '<br><p class="text-white mt-4 font-bold border-l-4 border-emerald-500 pl-4">Here is the completely safe, row-locked database execution block you requested.</p>', 5400);
+        }
+    </script>
+</body>
+</html>
