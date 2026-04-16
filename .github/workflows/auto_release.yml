@@ -1,0 +1,25 @@
+name: Automated Opus-Cognition CD Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*' # Trigger dynamically on semantic versioning tags (e.g., v1.0.0)
+
+jobs:
+  build-and-release:
+    name: Generate Pipeline Release Code Artifacts
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Legally required permission to allow the Github Robot to author a Release Page
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Generate Github Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          # Github intrinsically bundles the full repository state into .zip and .tar.gz based on the target tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
