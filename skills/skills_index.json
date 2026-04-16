@@ -1,0 +1,48 @@
+{
+  "version": "1.0.0",
+  "name": "opus-cognition-skills-registry",
+  "description": "Programmatic linking paths for automated agents to access logic skills natively.",
+  "engine_path": "system_instructions/opus46_cognitive_engine.md",
+  "skills": [
+    {
+      "id": "claude-api",
+      "path": "skills/claude-api/SKILL.md",
+      "description": "Anthropic SDK and Model Context Prompt Caching logic rules."
+    },
+    {
+      "id": "doc-coauthoring",
+      "path": "skills/doc-coauthoring/SKILL.md",
+      "description": "Advanced multiple-commit technical specification alignment."
+    },
+    {
+      "id": "docx",
+      "path": "skills/docx/SKILL.md",
+      "description": "Programmatic generation of Word templates via openxml."
+    },
+    {
+      "id": "mcp-builder",
+      "path": "skills/mcp-builder/SKILL.md",
+      "description": "JSON-RPC protocol constraints for STDIO Model Context Protocol server creation."
+    },
+    {
+      "id": "pdf",
+      "path": "skills/pdf/SKILL.md",
+      "description": "Bounding box OCR manipulation and parsing logic for scanned formats."
+    },
+    {
+      "id": "pptx",
+      "path": "skills/pptx/SKILL.md",
+      "description": "Slide deck parsing and XML modification logic."
+    },
+    {
+      "id": "skill-creator",
+      "path": "skills/skill-creator/SKILL.md",
+      "description": "Rules for benchmarking and generating generic child skills."
+    },
+    {
+      "id": "xlsx",
+      "path": "skills/xlsx/SKILL.md",
+      "description": "Data wrangling, chunking, and memory-safe operation protocols for massive CSVs/Spreadsheets."
+    }
+  ]
+}

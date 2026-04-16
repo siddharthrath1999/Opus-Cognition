@@ -1,0 +1,41 @@
+name: Opus-Cognition Evaluation Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'tests/**'
+      - 'system_instructions/**'
+      - 'skills/**'
+
+jobs:
+  run-benchmarks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Set up strict Python 3.11 Environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml anthropic
+
+      - name: Execute Opus Pipeline (Dry-Run / Structure Check)
+        env:
+          # In production, securely inject via Github Secrets to run live model evals.
+          # ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DRY_RUN: 'true'
+        run: |
+          # Executes the Python structural harness without billing the API
+          python tests/run_suite.py
+          
+      - name: Output Pipeline Check
+        run: echo "Codebase structural integrity verified successfully."
