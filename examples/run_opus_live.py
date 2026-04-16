@@ -20,7 +20,12 @@ def run_demo():
     print("🧠 Initializing Opus-Cognition Engine...")
     
     # 1. Load the core rulebook natively
-    with open("../system_instructions/opus46_cognitive_engine.md", "r") as f:
+    # UNIVERSAL ALIGNMENT: Dynamically trace root repository to prevent Environment Crashes
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    repo_root = os.path.dirname(base_dir)
+    engine_path = os.path.join(repo_root, "system_instructions", "opus46_cognitive_engine.md")
+    
+    with open(engine_path, "r", encoding="utf-8") as f:
         system_prompt = f.read()
 
     client = anthropic.Anthropic()
