@@ -8,8 +8,9 @@ FROM python:3.11-slim
 RUN useradd -m sandbox_user
 WORKDIR /home/sandbox_user/app
 
-# Install explicit python dependencies required by the eval suite
-RUN pip install --no-cache-dir pyyaml anthropic pandas openpyxl python-docx
+# Copy the strict environment manifest first (Docker caching logic)
+COPY --chown=sandbox_user:sandbox_user requirements.txt requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy strictly necessary logic blocks (No git creds or ENV)
 COPY --chown=sandbox_user:sandbox_user system_instructions/ system_instructions/
@@ -18,5 +19,5 @@ COPY --chown=sandbox_user:sandbox_user tests/ tests/
 
 USER sandbox_user
 
-# Run the strict evaluation suite
-CMD ["python", "-m", "tests.run_suite"]
+# Run the strict evaluation suite directly rather than via module risk
+CMD ["python", "tests/run_suite.py"]
