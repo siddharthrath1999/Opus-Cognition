@@ -23,12 +23,20 @@ If you use consumer models directly in the browser, you want to override their d
 
 ### Method A: ChatGPT (Custom GPT)
 *Best for: Persistent Chat environments and mobile use.*
-1. Go to **Explore GPTs** -> **Create**.
-2. Click the **Configure** tab.
-3. **Name:** `Opus Cognition Core`
-4. **Instructions:** Paste the entirety of [`system_instructions/opus46_cognitive_engine.md`](system_instructions/opus46_cognitive_engine.md) here.
-5. **Knowledge Base:** Upload any specialized `.md` skills you need from the [`skills/`](skills/) folder (e.g. `xlsx.md`).
-6. **Save & Publish.** Your AI will now inherently wrap all answers in `<thinking>` tags.
+
+When building the GPT, switch from the "Create" tab to the **Configure** tab and copy-paste these exact values:
+
+- **Name:** `Opus Cognitive Engineer`
+- **Description:** `A highly rigorous, multi-stage reasoning agent that forces slow-thinking, verification, and adversarial critique before answering.`
+- **Instructions:** Paste the complete text of [`system_instructions/opus46_cognitive_engine.md`](system_instructions/opus46_cognitive_engine.md) directly into this box.
+- **Conversation Starters:**
+  - *"Review this code block and find the hidden race conditions."*
+  - *"Help me architect a scalable backend system using first-principles."*
+  - *"Adversarially critique my attached document."*
+- **Knowledge:** Upload the specialized `.md` files you need directly from the [`skills/`](skills/) directory (e.g., upload `skills/pdf/SKILL.md` if you want it to be a PDF master).
+- **Capabilities:** Check `Code Interpreter & Data Analysis` (crucial for executing tests) and `Web Browsing`.
+
+Click **Save & Publish**. Your GPT will now inherently wrap all advanced problem-solving inside `<thinking>` tags.
 
 ### Method B: Claude (Projects)
 *Best for: Complex codebase analysis. Claude natively handles the XML framing perfectly.*
@@ -38,9 +46,15 @@ If you use consumer models directly in the browser, you want to override their d
 4. *Intuitive Tip:* Claude separates system prompts tightly. The XML tags native to Claude models (`<thinking>`) map flawlessly to this framework.
 
 ### Method C: Gemini Advanced (Gems)
-1. Go to **Gem Manager** -> **Create a new Gem**.
-2. **Instructions:** Paste the engine text.
-3. *Intuitive Tip:* Gemini is exceptionally fast, so the 10-stage loop overhead is barely noticeable, resulting in near-instant verified responses.
+*Best for: Extremely fast reasoning execution over large context windows.*
+
+1. Navigate to **Gem manager** -> **Create a new Gem**.
+2. Fill out the exact builder parameters:
+   - **Name:** `Opus Cognition Engine`
+   - **Instructions:** Paste the entire [`opus46_cognitive_engine.md`](system_instructions/opus46_cognitive_engine.md) text here.
+   - **Knowledge/Files:** Because Gems natively hook into your Google Drive, you can keep your skills updated dynamically. Upload the specific `/skills/` rules you want this Gem to possess (e.g., `xlsx_skill.md`).
+3. Click **Create**.
+4. *Intuitive Tip:* Gemini is exceptionally fast, so the 10-stage loop overhead is extremely negligible, resulting in near-instant structurally verified responses.
 
 ---
 
