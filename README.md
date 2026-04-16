@@ -85,4 +85,5 @@ While the engine gives the AI *intelligence*, the skills give it *specialized kn
 ## 📚 Where to Go Next
 
 - 📖 **[Installation & Integration Guide](USAGE_AND_INTEGRATION.md)**: Ready to use it? This guide explicitly shows you how to drop the engine into your daily workflows.
+- 🚑 **[Support, Troubleshooting & Fallbacks](SUPPORT_AND_TROUBLESHOOTING.md)**: AI stuck in a loop or cutting off? Need a lightweight alternative? Use this help center.
 - 🏆 **[Credits](CREDITS.md)**: Anthropic and Google DeepMind attributions for the base parameters that inspired this framework.
