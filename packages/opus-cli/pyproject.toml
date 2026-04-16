@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "opus-cognition-cli"
+version = "1.0.0"
+description = "A global CLI wrapper and SDK caching layer for the Opus-Cognition framework"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "anthropic>=0.21.0"
+]
+
+[project.scripts]
+opus = "opus_cli.main:cli"
